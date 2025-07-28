@@ -2,14 +2,16 @@ import multiprocessing
 import pandas as pd
 import platform
 import psutil
+from sampy import samtools
 import subprocess
 import sys
 
 from shiny import App, reactive, render, ui
 from urllib.parse import urlparse
 
+st = samtools.SamTools()
 app_ui = ui.page_fluid(
-    ui.h2("System details:"),
+    ui.h2(st.getstring("System details:")),
     ui.output_table("system"),
     ui.h2("Request details:"),
     ui.output_text_verbatim("request_output"),

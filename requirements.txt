@@ -2,3 +2,5 @@ jinja2==3.1.4
 pandas==2.2.3
 psutil==6.0.0
 shiny==1.1.0
+sampy @ git+https://github.com/samperman/sampy.git@af0387f9feb2b61a19dcb054336659e00f5c3dec
+

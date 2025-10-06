@@ -4,6 +4,7 @@ import platform
 import psutil
 import subprocess
 import sys
+import time
 
 from shiny import App, reactive, render, ui
 from urllib.parse import urlparse
@@ -70,6 +71,7 @@ def server(input, output, session):
             print(l)
         return l
 
+time.sleep(20)
 app = App(app_ui, server)
 
 def run(input: list[str]) -> str:

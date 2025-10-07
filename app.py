@@ -21,6 +21,7 @@ app_ui = ui.page_fluid(
     ui.output_text_verbatim("logged"),
 )
 
+break_me
 
 def server(input, output, session):
     @output

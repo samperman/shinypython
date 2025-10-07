@@ -1,9 +1,11 @@
 import multiprocessing
+import os
 import pandas as pd
 import platform
 import psutil
 import subprocess
 import sys
+from datetime import datetime
 
 from shiny import App, reactive, render, ui
 from urllib.parse import urlparse
@@ -21,7 +23,11 @@ app_ui = ui.page_fluid(
     ui.output_text_verbatim("logged"),
 )
 
-break_me
+fail_after = os.environ.get("FAIL_AFTER")
+if fail_after:
+    current_time = datetime.now().isoformat()
+    if current_time > fail_after:
+        raise RuntimeError(f"Current time {current_time} exceeds FAIL_AFTER threshold: {fail_after}")
 
 def server(input, output, session):
     @output

@@ -9,6 +9,7 @@ from shiny import App, reactive, render, ui
 from urllib.parse import urlparse
 
 app_ui = ui.page_fluid(
+    ui.img(src="connect-cloud.png", style="max-width: 200px; margin-bottom: 20px;"),
     ui.h2("System details:"),
     ui.output_table("system"),
     ui.h2("Request details:"),

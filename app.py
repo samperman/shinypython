@@ -5,6 +5,7 @@ import psutil
 import subprocess
 import sys
 
+from pathlib import Path
 from shiny import App, reactive, render, ui
 from urllib.parse import urlparse
 
@@ -72,7 +73,7 @@ def server(input, output, session):
         return l
 
 # Configure static file serving from the www directory
-app = App(app_ui, server, static_assets="www")
+app = App(app_ui, server, static_assets=Path(__file__).parent / "www")
 
 def run(input: list[str]) -> str:
     try:

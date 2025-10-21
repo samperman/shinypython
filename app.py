@@ -9,7 +9,7 @@ from shiny import App, reactive, render, ui
 from urllib.parse import urlparse
 
 app_ui = ui.page_fluid(
-    ui.tags.img(src="www/connect-cloud.png", style="max-width: 200px; margin-bottom: 20px;"),
+    ui.img(src="connect-cloud.png", style="max-width: 200px; margin-bottom: 20px;"),
     ui.h2("System details:"),
     ui.output_table("system"),
     ui.h2("Request details:"),
@@ -71,7 +71,8 @@ def server(input, output, session):
             print(l)
         return l
 
-app = App(app_ui, server)
+# Configure static file serving from the www directory
+app = App(app_ui, server, static_assets="www")
 
 def run(input: list[str]) -> str:
     try:

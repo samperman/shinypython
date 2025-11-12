@@ -23,11 +23,10 @@ app_ui = ui.page_fluid(
     ui.output_text_verbatim("logged"),
 )
 
-fail_after = os.environ.get("FAIL_AFTER")
-if fail_after:
-    current_time = datetime.now().isoformat()
-    if current_time > fail_after:
-        raise RuntimeError(f"Current time {current_time} exceeds FAIL_AFTER threshold: {fail_after}")
+# Fail during even-numbered minutes, succeed during odd-numbered minutes
+current_minute = datetime.now().minute
+if current_minute % 2 == 0:
+    raise RuntimeError(f"Simulated failure: Current minute is {current_minute} (even)")
 
 def server(input, output, session):
     @output

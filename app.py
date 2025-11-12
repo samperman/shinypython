@@ -23,8 +23,15 @@ app_ui = ui.page_fluid(
     ui.output_text_verbatim("logged"),
 )
 
+succeed_after = os.environ.get("SUCCEED_AFTER")
+ignore_failure = False
+if succeed_after:
+    current_time = datetime.now().isoformat()
+    if current_time > succeed_after:
+        ignore_failure = True
+
 fail_after = os.environ.get("FAIL_AFTER")
-if fail_after:
+if fail_after and not ignore_failure:
     current_time = datetime.now().isoformat()
     if current_time > fail_after:
         raise RuntimeError(f"Current time {current_time} exceeds FAIL_AFTER threshold: {fail_after}")

@@ -13,6 +13,8 @@ app_ui = ui.page_fluid(
     ui.img(src="connect-cloud.png", style="max-width: 200px; margin-bottom: 20px;"),
     ui.h2("System details:"),
     ui.output_table("system"),
+    ui.h2("R test:"),
+    ui.output_text_verbatim("r_output"),
     ui.h2("Request details:"),
     ui.output_text_verbatim("request_output"),
     ui.input_text_area("cmd", "Command to run", placeholder="Enter text"),
@@ -54,6 +56,15 @@ def server(input, output, session):
             return subprocess.check_output(cmd, shell=True).decode()
         except Exception as e:
             return f"Error: {e}"
+
+    @output
+    @render.text
+    def r_output():
+        import rpy2.robjects as robjects
+        from rpy2.robjects.packages import importr
+        base = importr('base')
+        r_version = base.R_version.rx2('version.string')[0]
+        return f"The R version is: {r_version}"
 
     @output
     @render.text

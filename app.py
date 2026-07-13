@@ -21,7 +21,7 @@ app_ui = ui.page_fluid(
     ui.input_checkbox("stderr", "log to stderr", False),
     ui.input_action_button("log_button", "Log"),
     ui.output_text_verbatim("logged"),
-)
+
 
 succeed_after = os.environ.get("SUCCEED_AFTER")
 ignore_failure = False

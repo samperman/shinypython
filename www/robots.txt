@@ -1,0 +1,3 @@
+# Custom robots.txt served from shinypython/www
+User-agent: *
+Disallow: /
